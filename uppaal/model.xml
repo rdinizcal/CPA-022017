@@ -25,6 +25,7 @@ bool cytonIdle = true;</declaration>
 			<committed/>
 		</location>
 		<location id="id5" x="-714" y="-59">
+			<name x="-765" y="-93">PegouGreen</name>
 			<committed/>
 		</location>
 		<location id="id6" x="-527" y="-59">
@@ -33,6 +34,7 @@ bool cytonIdle = true;</declaration>
 		<location id="id7" x="-680" y="-238">
 		</location>
 		<location id="id8" x="-527" y="-238">
+			<name x="-537" y="-272">PegouRed</name>
 			<committed/>
 		</location>
 		<init ref="id6"/>
@@ -274,10 +276,10 @@ len++</label>
 	<template>
 		<name>Especificacao_2</name>
 		<location id="id21" x="-433" y="-263">
-			<name x="-416" y="-272">R_Ocupada1</name>
+			<name x="-416" y="-297">R_Ocupada1</name>
 		</location>
 		<location id="id22" x="-595" y="-42">
-			<name x="-680" y="-17">R_Ocupada2</name>
+			<name x="-688" y="-17">R_Ocupada2</name>
 		</location>
 		<location id="id23" x="-595" y="-263">
 			<name x="-680" y="-297">G_Ocupada1</name>
@@ -285,57 +287,64 @@ len++</label>
 		<location id="id24" x="-731" y="-153" color="#00ff00">
 			<name x="-782" y="-161">done</name>
 		</location>
-		<location id="id25" x="-433" y="-51">
-			<name x="-416" y="-59">G_Ocupada2</name>
+		<location id="id25" x="-433" y="-42">
+			<name x="-416" y="-42">G_Ocupada2</name>
 		</location>
 		<init ref="id24"/>
 		<transition>
-			<source ref="id21"/>
+			<source ref="id25"/>
 			<target ref="id23"/>
-			<label kind="synchronisation" x="-551" y="-246">redUnload?</label>
-			<nail x="-450" y="-246"/>
-			<nail x="-450" y="-229"/>
-			<nail x="-569" y="-229"/>
-			<nail x="-569" y="-255"/>
+			<label kind="synchronisation" x="-535" y="-136">redDone?</label>
+			<nail x="-433" y="-119"/>
+			<nail x="-561" y="-119"/>
 		</transition>
 		<transition>
-			<source ref="id23"/>
-			<target ref="id21"/>
-			<label kind="synchronisation" x="-552" y="-212">redLoad?</label>
-			<nail x="-586" y="-238"/>
-			<nail x="-586" y="-212"/>
-			<nail x="-433" y="-212"/>
+			<source ref="id21"/>
+			<target ref="id22"/>
+			<label kind="synchronisation" x="-544" y="-195">greenDone?</label>
+			<nail x="-433" y="-195"/>
+			<nail x="-561" y="-195"/>
 		</transition>
 		<transition>
 			<source ref="id21"/>
 			<target ref="id23"/>
-			<label kind="synchronisation" x="-561" y="-297">greenUnload?</label>
-			<nail x="-450" y="-280"/>
-			<nail x="-450" y="-297"/>
-			<nail x="-569" y="-297"/>
-			<nail x="-569" y="-272"/>
+			<label kind="synchronisation" x="-544" y="-263">redDone?</label>
 		</transition>
 		<transition>
 			<source ref="id23"/>
 			<target ref="id21"/>
-			<label kind="synchronisation" x="-561" y="-331">greenLoad?</label>
+			<label kind="synchronisation" x="-552" y="-229">redLoad?</label>
+			<nail x="-586" y="-246"/>
+			<nail x="-586" y="-229"/>
+			<nail x="-442" y="-229"/>
+			<nail x="-442" y="-238"/>
+		</transition>
+		<transition>
+			<source ref="id23"/>
+			<target ref="id21"/>
+			<label kind="synchronisation" x="-561" y="-314">greenLoad?</label>
 			<nail x="-586" y="-280"/>
-			<nail x="-586" y="-314"/>
-			<nail x="-433" y="-314"/>
+			<nail x="-586" y="-297"/>
+			<nail x="-442" y="-297"/>
+			<nail x="-442" y="-289"/>
 		</transition>
 		<transition>
 			<source ref="id22"/>
 			<target ref="id24"/>
-			<label kind="synchronisation" x="-705" y="-144">redUnload?</label>
-			<nail x="-595" y="-127"/>
-			<nail x="-714" y="-127"/>
+			<label kind="synchronisation" x="-688" y="-93">redDone?</label>
+			<nail x="-603" y="-59"/>
+			<nail x="-603" y="-76"/>
+			<nail x="-705" y="-76"/>
+			<nail x="-705" y="-127"/>
 		</transition>
 		<transition>
 			<source ref="id23"/>
 			<target ref="id24"/>
-			<label kind="synchronisation" x="-714" y="-195">greenUnload?</label>
-			<nail x="-595" y="-178"/>
-			<nail x="-714" y="-178"/>
+			<label kind="synchronisation" x="-688" y="-221">greenDone?</label>
+			<nail x="-603" y="-246"/>
+			<nail x="-603" y="-229"/>
+			<nail x="-705" y="-229"/>
+			<nail x="-705" y="-178"/>
 		</transition>
 		<transition>
 			<source ref="id24"/>
@@ -351,38 +360,27 @@ len++</label>
 			<nail x="-731" y="-263"/>
 		</transition>
 		<transition>
-			<source ref="id25"/>
-			<target ref="id22"/>
-			<label kind="synchronisation" x="-551" y="-34">redUnload?</label>
-			<nail x="-450" y="-34"/>
-			<nail x="-450" y="-17"/>
-			<nail x="-569" y="-17"/>
-			<nail x="-569" y="-43"/>
-		</transition>
-		<transition>
 			<source ref="id22"/>
 			<target ref="id25"/>
-			<label kind="synchronisation" x="-552" y="0">redLoad?</label>
+			<label kind="synchronisation" x="-552" y="-8">redLoad?</label>
 			<nail x="-586" y="-26"/>
-			<nail x="-586" y="0"/>
-			<nail x="-433" y="0"/>
+			<nail x="-586" y="-8"/>
+			<nail x="-442" y="-8"/>
+			<nail x="-442" y="-17"/>
 		</transition>
 		<transition>
 			<source ref="id25"/>
 			<target ref="id22"/>
-			<label kind="synchronisation" x="-561" y="-85">greenUnload?</label>
-			<nail x="-450" y="-68"/>
-			<nail x="-450" y="-85"/>
-			<nail x="-569" y="-85"/>
-			<nail x="-569" y="-60"/>
+			<label kind="synchronisation" x="-561" y="-59">greenDone?</label>
 		</transition>
 		<transition>
 			<source ref="id22"/>
 			<target ref="id25"/>
-			<label kind="synchronisation" x="-561" y="-119">greenLoad?</label>
-			<nail x="-586" y="-68"/>
-			<nail x="-586" y="-102"/>
-			<nail x="-433" y="-102"/>
+			<label kind="synchronisation" x="-561" y="-93">greenLoad?</label>
+			<nail x="-586" y="-59"/>
+			<nail x="-586" y="-76"/>
+			<nail x="-442" y="-76"/>
+			<nail x="-442" y="-68"/>
 		</transition>
 	</template>
 	<template>
@@ -435,5 +433,29 @@ len++</label>
 system Input, Cyton, Processo_G, Processo_R, Especificacao_1, Especificacao_2, Especificacao_3;
     </system>
 	<queries>
+		<query>
+			<formula>A&lt;&gt; (Cyton.PegouGreen or Cyton.PegouRed) imply Especificacao_3.done
+			</formula>
+			<comment>Para todos os caminhos em que o estado Cyton.PegouGreen ou Cyton.PegouRed ocorrer, eventualmente Especificacao_3 vai chegar no estado done.
+			</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; (Cyton.PegouGreen or Cyton.PegouRed) imply Especificacao_2.done
+			</formula>
+			<comment>Para todos os caminhos em que o estado Cyton.PegouGreen ou Cyton.PegouRed ocorrer, eventualmente Especificacao_2 vai chegar no estado done.
+			</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; (Cyton.PegouGreen or Cyton.PegouRed) imply Especificacao_1.done 
+			</formula>
+			<comment>Para todos os caminhos em que o estado Cyton.PegouGreen ou Cyton.PegouRed ocorrer, eventualmente Especificacao_1 vai chegar no estado done.
+			</comment>
+		</query>
+		<query>
+			<formula>A[] not deadlock
+			</formula>
+			<comment>Verificar ocorrencia de deadlocks no modelo global
+			</comment>
+		</query>
 	</queries>
 </nta>
