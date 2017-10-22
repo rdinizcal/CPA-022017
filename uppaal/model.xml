@@ -9,39 +9,57 @@ const int BUFFER_SIZE = 5;
 /***********Eventos************/
 broadcast chan redNew, redLoad, redUnload, redDone; 
 broadcast chan greenNew, greenLoad, greenUnload, greenDone;
-bool cytonIdle = true;</declaration>
+bool cytonIdle = true;
+bool redOcc = false;
+bool greenOcc = false;</declaration>
 	<template>
 		<name>Cyton</name>
 		<location id="id0" x="-340" y="-59">
 			<committed/>
 		</location>
-		<location id="id1" x="-374" y="119">
+		<location id="id1" x="-714" y="102">
 		</location>
 		<location id="id2" x="-340" y="-204">
 		</location>
-		<location id="id3" x="-714" y="93">
+		<location id="id3" x="-374" y="119">
+			<name x="-365" y="136">PegouGreen</name>
 		</location>
-		<location id="id4" x="-527" y="119">
+		<location id="id4" x="-714" y="-59">
 			<committed/>
 		</location>
-		<location id="id5" x="-714" y="-59">
-			<name x="-765" y="-93">PegouGreen</name>
+		<location id="id5" x="-527" y="119">
+			<name x="-654" y="127">DepositouGreen</name>
 			<committed/>
 		</location>
 		<location id="id6" x="-527" y="-59">
 			<name x="-578" y="-85">Parado</name>
 		</location>
 		<location id="id7" x="-680" y="-238">
+			<name x="-756" y="-263">PegouRed</name>
 		</location>
 		<location id="id8" x="-527" y="-238">
-			<name x="-537" y="-272">PegouRed</name>
+			<name x="-518" y="-263">DepositouRed</name>
 			<committed/>
 		</location>
 		<init ref="id6"/>
 		<transition>
+			<source ref="id3"/>
+			<target ref="id5"/>
+			<label kind="guard" x="-493" y="153">greenOcc</label>
+			<label kind="synchronisation" x="-484" y="170">redLoad!</label>
+			<nail x="-374" y="170"/>
+			<nail x="-527" y="170"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-637" y="-297">redOcc</label>
+			<label kind="synchronisation" x="-646" y="-280">greenLoad!</label>
+		</transition>
+		<transition>
 			<source ref="id5"/>
 			<target ref="id6"/>
-			<label kind="assignment" x="-696" y="-59">cytonIdle:=true</label>
+			<label kind="assignment" x="-595" y="42">cytonIdle:=true</label>
 		</transition>
 		<transition>
 			<source ref="id0"/>
@@ -56,8 +74,8 @@ bool cytonIdle = true;</declaration>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id1"/>
-			<label kind="synchronisation" x="-450" y="17">greenDone?</label>
-			<label kind="assignment" x="-450" y="34">cytonIdle:=false</label>
+			<label kind="synchronisation" x="-671" y="-8">greenDone?</label>
+			<label kind="assignment" x="-680" y="9">cytonIdle:=false</label>
 		</transition>
 		<transition>
 			<source ref="id6"/>
@@ -68,29 +86,32 @@ bool cytonIdle = true;</declaration>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id7"/>
-			<label kind="synchronisation" x="-671" y="-161">redNew?</label>
-			<label kind="assignment" x="-662" y="-148">cytonIdle:=false</label>
+			<label kind="guard" x="-739" y="-178">!redOcc || !greenOcc</label>
+			<label kind="synchronisation" x="-663" y="-161">redNew?</label>
+			<label kind="assignment" x="-663" y="-144">cytonIdle:=false</label>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id3"/>
-			<label kind="synchronisation" x="-688" y="0">greenNew?</label>
-			<label kind="assignment" x="-696" y="17">cytonIdle:=false</label>
+			<label kind="guard" x="-518" y="-8">!redOcc || !greenOcc</label>
+			<label kind="synchronisation" x="-493" y="8">greenNew?</label>
+			<label kind="assignment" x="-484" y="25">cytonIdle:=false</label>
 		</transition>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id6"/>
-			<label kind="assignment" x="-578" y="34">cytonIdle:=true</label>
+			<label kind="assignment" x="-688" y="-59">cytonIdle:=true</label>
 		</transition>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id4"/>
-			<label kind="synchronisation" x="-510" y="119">greenUnload!</label>
+			<label kind="synchronisation" x="-816" y="17">greenUnload!</label>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id5"/>
-			<label kind="synchronisation" x="-799" y="0">greenLoad!</label>
+			<label kind="guard" x="-493" y="102">!greenOcc</label>
+			<label kind="synchronisation" x="-493" y="119">greenLoad!</label>
 		</transition>
 		<transition>
 			<source ref="id2"/>
@@ -100,7 +121,10 @@ bool cytonIdle = true;</declaration>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id8"/>
-			<label kind="synchronisation" x="-637" y="-255">redLoad!</label>
+			<label kind="guard" x="-637" y="-255">!redOcc</label>
+			<label kind="synchronisation" x="-637" y="-238">redLoad!</label>
+			<nail x="-680" y="-280"/>
+			<nail x="-527" y="-280"/>
 		</transition>
 	</template>
 	<template>
@@ -179,51 +203,55 @@ len++</label>
 		</transition>
 	</template>
 	<template>
-		<name>Processo_G</name>
-		<location id="id12" x="-407" y="-221">
-			<name x="-391" y="-229">Processando</name>
+		<name>Processo_R</name>
+		<location id="id12" x="-425" y="-221">
+			<name x="-409" y="-229">Processando</name>
 		</location>
-		<location id="id13" x="-527" y="-221">
-			<name x="-595" y="-229">Parado</name>
+		<location id="id13" x="-561" y="-221">
+			<name x="-629" y="-229">Parado</name>
 		</location>
 		<init ref="id13"/>
 		<transition>
 			<source ref="id12"/>
 			<target ref="id13"/>
-			<label kind="synchronisation" x="-510" y="-195">greenDone!</label>
-			<nail x="-416" y="-195"/>
-			<nail x="-518" y="-195"/>
+			<label kind="synchronisation" x="-527" y="-212">redDone!</label>
+			<label kind="assignment" x="-534" y="-195">redOcc:=false</label>
+			<nail x="-434" y="-195"/>
+			<nail x="-552" y="-195"/>
 		</transition>
 		<transition>
 			<source ref="id13"/>
 			<target ref="id12"/>
-			<label kind="synchronisation" x="-510" y="-263">greenLoad?</label>
-			<nail x="-518" y="-246"/>
-			<nail x="-416" y="-246"/>
+			<label kind="synchronisation" x="-527" y="-263">redLoad?</label>
+			<label kind="assignment" x="-535" y="-246">redOcc:=true</label>
+			<nail x="-552" y="-246"/>
+			<nail x="-434" y="-246"/>
 		</transition>
 	</template>
 	<template>
-		<name>Processo_R</name>
-		<location id="id14" x="-425" y="-221">
-			<name x="-409" y="-229">Processando</name>
+		<name>Processo_G</name>
+		<location id="id14" x="-407" y="-221">
+			<name x="-391" y="-229">Processando</name>
 		</location>
-		<location id="id15" x="-535" y="-221">
-			<name x="-603" y="-229">Parado</name>
+		<location id="id15" x="-552" y="-221">
+			<name x="-620" y="-229">Parado</name>
 		</location>
 		<init ref="id15"/>
 		<transition>
 			<source ref="id14"/>
 			<target ref="id15"/>
-			<label kind="synchronisation" x="-510" y="-195">redDone!</label>
-			<nail x="-434" y="-195"/>
-			<nail x="-526" y="-195"/>
+			<label kind="synchronisation" x="-518" y="-212">greenDone!</label>
+			<label kind="assignment" x="-535" y="-195">greenOcc:=false</label>
+			<nail x="-416" y="-195"/>
+			<nail x="-543" y="-195"/>
 		</transition>
 		<transition>
 			<source ref="id15"/>
 			<target ref="id14"/>
-			<label kind="synchronisation" x="-510" y="-263">redLoad?</label>
-			<nail x="-526" y="-246"/>
-			<nail x="-434" y="-246"/>
+			<label kind="synchronisation" x="-518" y="-263">greenLoad?</label>
+			<label kind="assignment" x="-535" y="-246">greenOcc:=true</label>
+			<nail x="-543" y="-246"/>
+			<nail x="-416" y="-246"/>
 		</transition>
 	</template>
 	<template>
@@ -276,19 +304,19 @@ len++</label>
 	<template>
 		<name>Especificacao_2</name>
 		<location id="id21" x="-433" y="-263">
-			<name x="-416" y="-297">R_Ocupada1</name>
+			<name x="-425" y="-297">M1_Ocupada1</name>
 		</location>
 		<location id="id22" x="-595" y="-42">
-			<name x="-688" y="-17">R_Ocupada2</name>
+			<name x="-697" y="-25">M1_Ocupada2</name>
 		</location>
 		<location id="id23" x="-595" y="-263">
-			<name x="-680" y="-297">G_Ocupada1</name>
+			<name x="-680" y="-297">M2_Ocupada1</name>
 		</location>
 		<location id="id24" x="-731" y="-153" color="#00ff00">
 			<name x="-782" y="-161">done</name>
 		</location>
 		<location id="id25" x="-433" y="-42">
-			<name x="-416" y="-42">G_Ocupada2</name>
+			<name x="-416" y="-34">M2_Ocupada2</name>
 		</location>
 		<init ref="id24"/>
 		<transition>
@@ -429,24 +457,52 @@ len++</label>
 			<label kind="synchronisation" x="-348" y="-127">redLoad?</label>
 		</transition>
 	</template>
-	<system>// List one or more processes to be composed into a system.
-system Input, Cyton, Processo_G, Processo_R, Especificacao_1, Especificacao_2, Especificacao_3;
+	<system>//Declaration
+Maquina1 = Processo_R();
+Maquina2 = Processo_G();
+
+// List one or more processes to be composed into a system.
+system Input, Cyton, Maquina1, Maquina2, Especificacao_1, Especificacao_2, Especificacao_3;
     </system>
 	<queries>
 		<query>
-			<formula>A&lt;&gt; (Cyton.PegouGreen or Cyton.PegouRed) imply Especificacao_3.done
+			<formula>A[] Especificacao_2.M2_Ocupada1 imply (Maquina2.Processando and not Maquina1.Processando)
+			</formula>
+			<comment>Garante que a primeira peca verde que chegue seja processada somente pela maquina 1
+			</comment>
+		</query>
+		<query>
+			<formula>A[] Especificacao_2.M1_Ocupada2 imply (Maquina1.Processando and not Maquina2.Processando)
+			</formula>
+			<comment>Garante que a primeira peca vermelha que chegue seja processada somente pela maquina 1
+			</comment>
+		</query>
+		<query>
+			<formula>A[] Especificacao_2.M2_Ocupada2 imply (Maquina1.Processando and Maquina2.Processando)
+			</formula>
+			<comment>Garante que de acordo com a especificacao 2, se duas pecas chegaram antes de uma maquina terminar de processar, ambas as maquinas sao utilizadas
+			</comment>
+		</query>
+		<query>
+			<formula>A[] Especificacao_2.M1_Ocupada1 imply (Maquina1.Processando and Maquina2.Processando)
+			</formula>
+			<comment>Garante que de acordo com a especificacao 2, se duas pecas chegaram antes de uma maquina terminar de processar, ambas as maquinas sao utilizadas
+			</comment>
+		</query>
+		<query>
+			<formula>A&lt;&gt; (Cyton.DepositouRed or Cyton.DepositouGreen) imply Especificacao_3.done
 			</formula>
 			<comment>Para todos os caminhos em que o estado Cyton.PegouGreen ou Cyton.PegouRed ocorrer, eventualmente Especificacao_3 vai chegar no estado done.
 			</comment>
 		</query>
 		<query>
-			<formula>A&lt;&gt; (Cyton.PegouGreen or Cyton.PegouRed) imply Especificacao_2.done
+			<formula>A&lt;&gt; (Cyton.DepositouRed or Cyton.DepositouGreen) imply Especificacao_2.done
 			</formula>
 			<comment>Para todos os caminhos em que o estado Cyton.PegouGreen ou Cyton.PegouRed ocorrer, eventualmente Especificacao_2 vai chegar no estado done.
 			</comment>
 		</query>
 		<query>
-			<formula>A&lt;&gt; (Cyton.PegouGreen or Cyton.PegouRed) imply Especificacao_1.done 
+			<formula>A&lt;&gt; (Cyton.DepositouRed or Cyton.DepositouGreen) imply Especificacao_1.done 
 			</formula>
 			<comment>Para todos os caminhos em que o estado Cyton.PegouGreen ou Cyton.PegouRed ocorrer, eventualmente Especificacao_1 vai chegar no estado done.
 			</comment>
