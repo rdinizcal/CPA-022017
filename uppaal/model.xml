@@ -15,19 +15,25 @@ bool cyton = true;</declaration>
 	<template>
 		<name>Cyton</name>
 		<location id="id0" x="-374" y="-68">
+			<name x="-357" y="-76">c5</name>
+			<committed/>
 		</location>
 		<location id="id1" x="-680" y="-238">
+			<name x="-688" y="-272">c3</name>
 			<committed/>
 		</location>
 		<location id="id2" x="-544" y="-238">
+			<name x="-552" y="-272">c4</name>
 		</location>
 		<location id="id3" x="-544" y="102">
+			<name x="-527" y="93">c1</name>
 		</location>
 		<location id="id4" x="-680" y="102">
+			<name x="-690" y="68">c2</name>
 			<committed/>
 		</location>
 		<location id="id5" x="-544" y="-68">
-			<name x="-569" y="-51">Parado</name>
+			<name x="-561" y="-51">idleC</name>
 		</location>
 		<init ref="id5"/>
 		<transition>
@@ -42,6 +48,7 @@ bool cyton = true;</declaration>
 			<source ref="id5"/>
 			<target ref="id0"/>
 			<label kind="synchronisation" x="-442" y="-34">red2green?</label>
+			<label kind="assignment" x="-442" y="-51">cyton:=false</label>
 			<nail x="-442" y="-34"/>
 			<nail x="-374" y="-34"/>
 		</transition>
@@ -76,32 +83,32 @@ bool cyton = true;</declaration>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id2"/>
-			<label kind="synchronisation" x="-637" y="-153">greenDone?</label>
-			<label kind="assignment" x="-637" y="-136">cyton:=false</label>
+			<label kind="synchronisation" x="-637" y="-170">greenDone?</label>
+			<label kind="assignment" x="-637" y="-153">cyton:=false</label>
 			<nail x="-578" y="-102"/>
 			<nail x="-578" y="-204"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id2"/>
-			<label kind="synchronisation" x="-510" y="-153">redDone?</label>
-			<label kind="assignment" x="-510" y="-136">cyton:=false</label>
+			<label kind="synchronisation" x="-510" y="-170">redDone?</label>
+			<label kind="assignment" x="-510" y="-153">cyton:=false</label>
 			<nail x="-510" y="-102"/>
 			<nail x="-510" y="-204"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id3"/>
-			<label kind="synchronisation" x="-637" y="17">redNew?</label>
-			<label kind="assignment" x="-637" y="34">cyton:=false</label>
+			<label kind="synchronisation" x="-637" y="0">redNew?</label>
+			<label kind="assignment" x="-637" y="17">cyton:=false</label>
 			<nail x="-578" y="-34"/>
 			<nail x="-578" y="68"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
 			<target ref="id3"/>
-			<label kind="synchronisation" x="-501" y="17">greenNew?</label>
-			<label kind="assignment" x="-501" y="34">cyton:=false</label>
+			<label kind="synchronisation" x="-510" y="0">greenNew?</label>
+			<label kind="assignment" x="-510" y="17">cyton:=false</label>
 			<nail x="-510" y="-34"/>
 			<nail x="-510" y="68"/>
 		</transition>
@@ -194,10 +201,10 @@ len++</label>
 	<template>
 		<name>Processo_R</name>
 		<location id="id9" x="-425" y="-221">
-			<name x="-409" y="-229">Processando</name>
+			<name x="-409" y="-229">ProcessandoR</name>
 		</location>
 		<location id="id10" x="-561" y="-221">
-			<name x="-629" y="-229">Parado</name>
+			<name x="-637" y="-229">ParadoR</name>
 		</location>
 		<init ref="id10"/>
 		<transition>
@@ -218,10 +225,10 @@ len++</label>
 	<template>
 		<name>Processo_G</name>
 		<location id="id11" x="-407" y="-221">
-			<name x="-391" y="-229">Processando</name>
+			<name x="-391" y="-229">ProcessandoG</name>
 		</location>
 		<location id="id12" x="-552" y="-221">
-			<name x="-620" y="-229">Parado</name>
+			<name x="-629" y="-229">ParadoG</name>
 		</location>
 		<init ref="id12"/>
 		<transition>
@@ -242,19 +249,25 @@ len++</label>
 	<template>
 		<name>Especificacao_1</name>
 		<location id="id13" x="-986" y="-306">
+			<name x="-996" y="-340">e11</name>
 		</location>
 		<location id="id14" x="-714" y="-442">
+			<name x="-724" y="-476">e14</name>
 		</location>
 		<location id="id15" x="-850" y="-374" color="#00ff00">
-			<name x="-867" y="-408">done</name>
+			<name x="-867" y="-408">done1</name>
 		</location>
 		<location id="id16" x="-714" y="-306">
+			<name x="-722" y="-340">e16</name>
 		</location>
 		<location id="id17" x="-646" y="-374">
+			<name x="-656" y="-408">e15</name>
 		</location>
 		<location id="id18" x="-986" y="-442">
+			<name x="-996" y="-476">e13</name>
 		</location>
 		<location id="id19" x="-1054" y="-374">
+			<name x="-1064" y="-408">e12</name>
 		</location>
 		<init ref="id15"/>
 		<transition>
@@ -278,13 +291,13 @@ len++</label>
 		<transition>
 			<source ref="id17"/>
 			<target ref="id16"/>
-			<label kind="synchronisation" x="-688" y="-306">greenDone?</label>
+			<label kind="synchronisation" x="-697" y="-306">greenDone?</label>
 			<nail x="-646" y="-306"/>
 		</transition>
 		<transition>
 			<source ref="id14"/>
 			<target ref="id17"/>
-			<label kind="synchronisation" x="-680" y="-459">greenLoad?</label>
+			<label kind="synchronisation" x="-697" y="-459">greenLoad?</label>
 			<nail x="-646" y="-442"/>
 		</transition>
 		<transition>
@@ -309,19 +322,19 @@ len++</label>
 	<template>
 		<name>Especificacao_2</name>
 		<location id="id20" x="-433" y="-263">
-			<name x="-425" y="-297">M1_Ocupada2</name>
+			<name x="-425" y="-297">e22</name>
 		</location>
 		<location id="id21" x="-595" y="-42">
-			<name x="-697" y="-25">M1_Ocupada1</name>
+			<name x="-620" y="-25">e23</name>
 		</location>
 		<location id="id22" x="-595" y="-263">
-			<name x="-697" y="-297">M2_Ocupada1</name>
+			<name x="-620" y="-297">e21</name>
 		</location>
 		<location id="id23" x="-731" y="-153" color="#00ff00">
-			<name x="-782" y="-161">done</name>
+			<name x="-799" y="-161">done2</name>
 		</location>
 		<location id="id24" x="-433" y="-42">
-			<name x="-416" y="-34">M2_Ocupada2</name>
+			<name x="-425" y="-34">e24</name>
 		</location>
 		<init ref="id23"/>
 		<transition>
@@ -419,19 +432,25 @@ len++</label>
 	<template>
 		<name>Especificacao_3</name>
 		<location id="id25" x="-408" y="-136">
+			<name x="-425" y="-170">e33</name>
 		</location>
 		<location id="id26" x="-476" y="-68">
+			<name x="-486" y="-102">e32</name>
 		</location>
 		<location id="id27" x="-408" y="0">
+			<name x="-416" y="-34">e31</name>
 		</location>
 		<location id="id28" x="-136" y="0">
+			<name x="-146" y="-34">e36</name>
 		</location>
 		<location id="id29" x="-68" y="-68">
+			<name x="-78" y="-102">e35</name>
 		</location>
 		<location id="id30" x="-136" y="-136">
+			<name x="-146" y="-170">e34</name>
 		</location>
 		<location id="id31" x="-272" y="-68" color="#00ff00">
-			<name x="-323" y="-68">done</name>
+			<name x="-306" y="-102">done3</name>
 		</location>
 		<init ref="id31"/>
 		<transition>
@@ -492,11 +511,11 @@ len++</label>
 		<init ref="id32"/>
 	</template>
 	<system>//Declaration
-Maquina1 = Processo_R();
-Maquina2 = Processo_G();
+MaquinaR = Processo_R();
+MaquinaG = Processo_G();
 
 // List one or more processes to be composed into a system.
-system Input, Cyton, Maquina1, Maquina2, Especificacao_1, Especificacao_2, Especificacao_3;
+system Input, Cyton, MaquinaR, MaquinaG, Especificacao_1, Especificacao_2, Especificacao_3;
     </system>
 	<queries>
 		<query>
