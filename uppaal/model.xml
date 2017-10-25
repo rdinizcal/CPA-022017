@@ -4,123 +4,90 @@
 	<declaration>/**********Constantes**********/
 const int green = 0;
 const int red = 1;
-const int BUFFER_SIZE = 5;
+const int BUFFER_SIZE = 1;
 
 /***********Eventos************/
-broadcast chan redNew, redLoad, redUnload, redDone, red2green; 
+broadcast chan redNew, redLoad, redUnload, redDone, red2Green; 
 broadcast chan greenNew, greenLoad, greenUnload, greenDone;
 broadcast chan cytonIdle;
 
-bool cyton = true;</declaration>
+bool flag = true;</declaration>
 	<template>
-		<name>Cyton</name>
-		<location id="id0" x="-374" y="-68">
-			<name x="-357" y="-76">c5</name>
-			<committed/>
+		<name>Flag</name>
+		<location id="id0" x="-102" y="-34">
 		</location>
-		<location id="id1" x="-680" y="-238">
-			<name x="-688" y="-272">c3</name>
-			<committed/>
-		</location>
-		<location id="id2" x="-544" y="-238">
-			<name x="-552" y="-272">c4</name>
-		</location>
-		<location id="id3" x="-544" y="102">
-			<name x="-527" y="93">c1</name>
-		</location>
-		<location id="id4" x="-680" y="102">
-			<name x="-690" y="68">c2</name>
-			<committed/>
-		</location>
-		<location id="id5" x="-544" y="-68">
-			<name x="-561" y="-51">idleC</name>
-		</location>
-		<init ref="id5"/>
+		<init ref="id0"/>
 		<transition>
 			<source ref="id0"/>
-			<target ref="id5"/>
-			<label kind="synchronisation" x="-442" y="-119">cytonIdle!</label>
-			<label kind="assignment" x="-442" y="-102">cyton:=true</label>
-			<nail x="-374" y="-102"/>
-			<nail x="-442" y="-102"/>
-		</transition>
-		<transition>
-			<source ref="id5"/>
 			<target ref="id0"/>
-			<label kind="synchronisation" x="-442" y="-34">red2green?</label>
-			<label kind="assignment" x="-442" y="-51">cyton:=false</label>
-			<nail x="-442" y="-34"/>
-			<nail x="-374" y="-34"/>
+			<label kind="synchronisation" x="-84" y="-187">red2Green?</label>
+			<label kind="assignment" x="-84" y="-170">flag:=true</label>
+			<nail x="-102" y="-170"/>
+			<nail x="34" y="-170"/>
 		</transition>
 		<transition>
-			<source ref="id2"/>
-			<target ref="id1"/>
-			<label kind="synchronisation" x="-663" y="-272">greenUnload?</label>
-			<nail x="-544" y="-272"/>
-			<nail x="-680" y="-272"/>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-195" y="-136">greenDone?</label>
+			<label kind="assignment" x="-178" y="-119">flag:=false</label>
+			<nail x="-170" y="-102"/>
+			<nail x="-102" y="-102"/>
 		</transition>
 		<transition>
-			<source ref="id3"/>
-			<target ref="id4"/>
-			<label kind="synchronisation" x="-645" y="136">redLoad?</label>
-			<nail x="-544" y="136"/>
-			<nail x="-680" y="136"/>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-255" y="-85">greenNew?</label>
+			<label kind="assignment" x="-238" y="-68">flag:=false</label>
+			<nail x="-170" y="-34"/>
+			<nail x="-170" y="-102"/>
 		</transition>
 		<transition>
-			<source ref="id4"/>
-			<target ref="id5"/>
-			<label kind="synchronisation" x="-663" y="-68">cytonIdle!</label>
-			<label kind="assignment" x="-680" y="-51">cyton:=true</label>
-			<nail x="-680" y="-68"/>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-238" y="-17">redDone?</label>
+			<label kind="assignment" x="-238" y="0">flag:=false</label>
+			<nail x="-170" y="34"/>
+			<nail x="-170" y="-34"/>
 		</transition>
 		<transition>
-			<source ref="id1"/>
-			<target ref="id5"/>
-			<label kind="synchronisation" x="-663" y="-85">cytonIdle!</label>
-			<label kind="assignment" x="-680" y="-102">cyton:=true</label>
-			<nail x="-680" y="-68"/>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-170" y="34">redNew?</label>
+			<label kind="assignment" x="-170" y="51">flag:=false</label>
+			<nail x="-102" y="34"/>
+			<nail x="-170" y="34"/>
 		</transition>
 		<transition>
-			<source ref="id5"/>
-			<target ref="id2"/>
-			<label kind="synchronisation" x="-637" y="-170">greenDone?</label>
-			<label kind="assignment" x="-637" y="-153">cyton:=false</label>
-			<nail x="-578" y="-102"/>
-			<nail x="-578" y="-204"/>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-93" y="34">greenUnload?</label>
+			<label kind="assignment" x="-93" y="51">flag:=true</label>
+			<nail x="-34" y="34"/>
+			<nail x="-102" y="34"/>
 		</transition>
 		<transition>
-			<source ref="id5"/>
-			<target ref="id2"/>
-			<label kind="synchronisation" x="-510" y="-170">redDone?</label>
-			<label kind="assignment" x="-510" y="-153">cyton:=false</label>
-			<nail x="-510" y="-102"/>
-			<nail x="-510" y="-204"/>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-34" y="-17">greenLoad?</label>
+			<label kind="assignment" x="-34" y="0">flag:=true</label>
+			<nail x="-34" y="-34"/>
+			<nail x="-34" y="34"/>
 		</transition>
 		<transition>
-			<source ref="id5"/>
-			<target ref="id3"/>
-			<label kind="synchronisation" x="-637" y="0">redNew?</label>
-			<label kind="assignment" x="-637" y="17">cyton:=false</label>
-			<nail x="-578" y="-34"/>
-			<nail x="-578" y="68"/>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-34" y="-85">redUnload?</label>
+			<label kind="assignment" x="-34" y="-68">flag:=true</label>
+			<nail x="-34" y="-102"/>
+			<nail x="-34" y="-34"/>
 		</transition>
 		<transition>
-			<source ref="id5"/>
-			<target ref="id3"/>
-			<label kind="synchronisation" x="-510" y="0">greenNew?</label>
-			<label kind="assignment" x="-510" y="17">cyton:=false</label>
-			<nail x="-510" y="-34"/>
-			<nail x="-510" y="68"/>
-		</transition>
-		<transition>
-			<source ref="id3"/>
-			<target ref="id4"/>
-			<label kind="synchronisation" x="-654" y="102">greenLoad?</label>
-		</transition>
-		<transition>
-			<source ref="id2"/>
-			<target ref="id1"/>
-			<label kind="synchronisation" x="-654" y="-238">redUnload?</label>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="-102" y="-136">redLoad?</label>
+			<label kind="assignment" x="-102" y="-119">flag:=true</label>
+			<nail x="-102" y="-102"/>
+			<nail x="-34" y="-102"/>
 		</transition>
 	</template>
 	<template>
@@ -146,51 +113,51 @@ int dequeue(){
 }
 
 </declaration>
-		<location id="id6" x="-476" y="-144">
+		<location id="id1" x="-476" y="-144">
 			<name x="-587" y="-153">ChamaBraco</name>
 			<committed/>
 		</location>
-		<location id="id7" x="-8" y="-144">
+		<location id="id2" x="-8" y="-144">
 			<name x="9" y="-153">NovaPeca</name>
 			<committed/>
 		</location>
-		<location id="id8" x="-255" y="-144">
+		<location id="id3" x="-255" y="-144">
 			<name x="-297" y="-93">Esperando</name>
 		</location>
-		<init ref="id8"/>
+		<init ref="id3"/>
 		<transition>
-			<source ref="id6"/>
-			<target ref="id8"/>
-			<label kind="guard" x="-459" y="-110">peca==red</label>
-			<label kind="synchronisation" x="-459" y="-93">redNew!</label>
+			<source ref="id1"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-442" y="-110">peca==red</label>
+			<label kind="synchronisation" x="-442" y="-93">redNew!</label>
 			<nail x="-476" y="-93"/>
 			<nail x="-306" y="-93"/>
 		</transition>
 		<transition>
-			<source ref="id6"/>
-			<target ref="id8"/>
-			<label kind="guard" x="-468" y="-195">peca==green</label>
-			<label kind="synchronisation" x="-458" y="-212">greenNew!</label>
+			<source ref="id1"/>
+			<target ref="id3"/>
+			<label kind="guard" x="-442" y="-195">peca==green</label>
+			<label kind="synchronisation" x="-442" y="-212">greenNew!</label>
 			<nail x="-476" y="-195"/>
 			<nail x="-306" y="-195"/>
 		</transition>
 		<transition>
-			<source ref="id8"/>
-			<target ref="id6"/>
-			<label kind="guard" x="-451" y="-161">len&gt;0 &amp;&amp; cyton</label>
+			<source ref="id3"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-451" y="-161">len&gt;0 &amp;&amp; flag</label>
 			<label kind="assignment" x="-442" y="-144">peca:=dequeue()</label>
 		</transition>
 		<transition>
-			<source ref="id7"/>
-			<target ref="id8"/>
+			<source ref="id2"/>
+			<target ref="id3"/>
 			<label kind="assignment" x="-212" y="-212">buffer[len]:=peca,
 len++</label>
 			<nail x="-34" y="-178"/>
 			<nail x="-238" y="-178"/>
 		</transition>
 		<transition>
-			<source ref="id8"/>
-			<target ref="id7"/>
+			<source ref="id3"/>
+			<target ref="id2"/>
 			<label kind="select" x="-221" y="-110">rand:int[0,1]</label>
 			<label kind="guard" x="-195" y="-127">len&lt;BUFFER_SIZE</label>
 			<label kind="assignment" x="-127" y="-110">peca:=rand</label>
@@ -199,367 +166,853 @@ len++</label>
 		</transition>
 	</template>
 	<template>
-		<name>Processo_R</name>
-		<location id="id9" x="-425" y="-221">
-			<name x="-409" y="-229">ProcessandoR</name>
+		<name>Cyton</name>
+		<location id="id4" x="-374" y="-68">
+			<name x="-357" y="-76">C3</name>
+			<committed/>
 		</location>
-		<location id="id10" x="-561" y="-221">
-			<name x="-637" y="-229">ParadoR</name>
+		<location id="id5" x="-544" y="-238">
+			<name x="-552" y="-272">C1</name>
+			<committed/>
 		</location>
-		<init ref="id10"/>
+		<location id="id6" x="-544" y="102">
+			<name x="-552" y="119">C2</name>
+			<committed/>
+		</location>
+		<location id="id7" x="-544" y="-68">
+			<name x="-595" y="-76">C0</name>
+		</location>
+		<init ref="id7"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-476" y="-85">cytonIdle!</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="-459" y="8">red2Green?</label>
+			<nail x="-442" y="0"/>
+			<nail x="-374" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-467" y="-187">greenUnload?</label>
+			<nail x="-476" y="-170"/>
+			<nail x="-476" y="-238"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-476" y="34">redLoad?</label>
+			<nail x="-476" y="34"/>
+			<nail x="-476" y="102"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-578" y="25">cytonIdle!</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-569" y="-187">cytonIdle!</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-697" y="34">greenLoad?</label>
+			<nail x="-612" y="34"/>
+			<nail x="-612" y="102"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-697" y="-187">redUnload?</label>
+			<nail x="-612" y="-170"/>
+			<nail x="-612" y="-238"/>
+		</transition>
+	</template>
+	<template>
+		<name>ProcessoR</name>
+		<location id="id8" x="-442" y="-238">
+			<name x="-425" y="-263">R1</name>
+		</location>
+		<location id="id9" x="-578" y="-238">
+			<name x="-595" y="-221">R0</name>
+		</location>
+		<init ref="id9"/>
 		<transition>
 			<source ref="id9"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="-731" y="-246">red2Green?</label>
+			<nail x="-646" y="-204"/>
+			<nail x="-646" y="-272"/>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="-544" y="-229">redDone!</label>
+			<nail x="-451" y="-212"/>
+			<nail x="-569" y="-212"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="-544" y="-280">redLoad?</label>
+			<nail x="-569" y="-263"/>
+			<nail x="-451" y="-263"/>
+		</transition>
+	</template>
+	<template>
+		<name>ProcessoG</name>
+		<location id="id10" x="-408" y="-238">
+			<name x="-392" y="-246">G1</name>
+		</location>
+		<location id="id11" x="-544" y="-238">
+			<name x="-586" y="-246">G0</name>
+		</location>
+		<init ref="id11"/>
+		<transition>
+			<source ref="id11"/>
 			<target ref="id10"/>
-			<label kind="synchronisation" x="-527" y="-212">redDone!</label>
-			<nail x="-434" y="-195"/>
-			<nail x="-552" y="-195"/>
+			<label kind="synchronisation" x="-518" y="-323">red2Green?</label>
+			<nail x="-527" y="-306"/>
+			<nail x="-425" y="-306"/>
 		</transition>
 		<transition>
 			<source ref="id10"/>
-			<target ref="id9"/>
-			<label kind="synchronisation" x="-527" y="-263">redLoad?</label>
-			<nail x="-552" y="-246"/>
-			<nail x="-434" y="-246"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-518" y="-229">greenDone!</label>
+			<nail x="-417" y="-212"/>
+			<nail x="-535" y="-212"/>
 		</transition>
-	</template>
-	<template>
-		<name>Processo_G</name>
-		<location id="id11" x="-407" y="-221">
-			<name x="-391" y="-229">ProcessandoG</name>
-		</location>
-		<location id="id12" x="-552" y="-221">
-			<name x="-629" y="-229">ParadoG</name>
-		</location>
-		<init ref="id12"/>
 		<transition>
 			<source ref="id11"/>
-			<target ref="id12"/>
-			<label kind="synchronisation" x="-518" y="-212">greenDone!</label>
-			<nail x="-416" y="-195"/>
-			<nail x="-543" y="-195"/>
-		</transition>
-		<transition>
-			<source ref="id12"/>
-			<target ref="id11"/>
-			<label kind="synchronisation" x="-518" y="-263">greenLoad?</label>
-			<nail x="-543" y="-246"/>
-			<nail x="-416" y="-246"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-518" y="-280">greenLoad?</label>
+			<nail x="-535" y="-263"/>
+			<nail x="-417" y="-263"/>
 		</transition>
 	</template>
 	<template>
-		<name>Especificacao_1</name>
-		<location id="id13" x="-986" y="-306">
-			<name x="-996" y="-340">e11</name>
+		<name>ProcessoGR</name>
+		<location id="id12" x="-170" y="0">
+			<name x="-212" y="8">G0R1</name>
 		</location>
-		<location id="id14" x="-714" y="-442">
-			<name x="-724" y="-476">e14</name>
+		<location id="id13" x="-34" y="-68">
+			<name x="-17" y="-85">G1R1</name>
 		</location>
-		<location id="id15" x="-850" y="-374" color="#00ff00">
-			<name x="-867" y="-408">done1</name>
+		<location id="id14" x="-170" y="-136">
+			<name x="-161" y="-161">G1R0</name>
 		</location>
-		<location id="id16" x="-714" y="-306">
-			<name x="-722" y="-340">e16</name>
-		</location>
-		<location id="id17" x="-646" y="-374">
-			<name x="-656" y="-408">e15</name>
-		</location>
-		<location id="id18" x="-986" y="-442">
-			<name x="-996" y="-476">e13</name>
-		</location>
-		<location id="id19" x="-1054" y="-374">
-			<name x="-1064" y="-408">e12</name>
+		<location id="id15" x="-306" y="-68">
+			<name x="-365" y="-76">G0R0</name>
 		</location>
 		<init ref="id15"/>
 		<transition>
 			<source ref="id15"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-322" y="-187">red2Green?</label>
+			<nail x="-340" y="-102"/>
+			<nail x="-340" y="-170"/>
+			<nail x="-204" y="-170"/>
+		</transition>
+		<transition>
+			<source ref="id15"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-288" y="-17">redLoad?</label>
+			<nail x="-306" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-136" y="-102">redDone!</label>
+			<nail x="-68" y="-102"/>
+			<nail x="-153" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id12"/>
+			<label kind="synchronisation" x="-153" y="-51">greenDone!</label>
+			<nail x="-68" y="-34"/>
+			<nail x="-153" y="-34"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id15"/>
+			<label kind="synchronisation" x="-263" y="-51">redDone!</label>
+			<nail x="-187" y="-34"/>
+			<nail x="-272" y="-34"/>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id15"/>
+			<label kind="synchronisation" x="-272" y="-102">greenDone!</label>
+			<nail x="-187" y="-102"/>
+			<nail x="-272" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
 			<target ref="id13"/>
-			<label kind="synchronisation" x="-960" y="-306">redNew?</label>
-			<nail x="-917" y="-306"/>
+			<label kind="synchronisation" x="-136" y="-17">greenLoad?</label>
+			<nail x="-34" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id13"/>
+			<label kind="synchronisation" x="-110" y="-153">redLoad?</label>
+			<nail x="-34" y="-136"/>
 		</transition>
 		<transition>
 			<source ref="id15"/>
 			<target ref="id14"/>
-			<label kind="synchronisation" x="-816" y="-459">greenNew?</label>
-			<nail x="-781" y="-442"/>
+			<label kind="synchronisation" x="-288" y="-153">greenLoad?</label>
+			<nail x="-306" y="-136"/>
+		</transition>
+	</template>
+	<template>
+		<name>ProcessoGR_Cyton</name>
+		<location id="id16" x="280" y="-34">
+			<name x="297" y="-42">C1G1R1</name>
+		</location>
+		<location id="id17" x="-34" y="136">
+			<name x="-60" y="144">C1G0R1</name>
+		</location>
+		<location id="id18" x="-34" y="-204">
+			<name x="-60" y="-238">C1G1R0</name>
+		</location>
+		<location id="id19" x="-348" y="-34">
+			<name x="-424" y="-42">C1G0R0</name>
+		</location>
+		<location id="id20" x="68" y="-34">
+			<name x="0" y="-42">C2G1R1</name>
+		</location>
+		<location id="id21" x="-34" y="34" color="#ff0000">
+			<name x="-68" y="51">C0G0R1</name>
+		</location>
+		<location id="id22" x="-136" y="34">
+			<name x="-161" y="59">C2G0R1</name>
+		</location>
+		<location id="id23" x="170" y="-34" color="#000000">
+			<name x="127" y="-17">C0G1R1</name>
+		</location>
+		<location id="id24" x="-34" y="-102" color="#00ff00">
+			<name x="-44" y="-136">C0G1R0</name>
+		</location>
+		<location id="id25" x="-136" y="-102">
+			<name x="-161" y="-136">C2G1R0</name>
+		</location>
+		<location id="id26" x="-238" y="-34">
+			<name x="-221" y="-42">C0G0R0</name>
+		</location>
+		<init ref="id26"/>
+		<transition>
+			<source ref="id17"/>
+			<target ref="id21"/>
+			<label kind="synchronisation" x="-102" y="85">cytonIdle!</label>
+		</transition>
+		<transition>
+			<source ref="id21"/>
+			<target ref="id17"/>
+			<label kind="synchronisation" x="0" y="85">red2Green?</label>
+			<nail x="0" y="51"/>
+			<nail x="0" y="119"/>
+		</transition>
+		<transition>
+			<source ref="id23"/>
+			<target ref="id21"/>
+			<label kind="synchronisation" x="34" y="34">greenDone!</label>
+			<nail x="153" y="0"/>
+			<nail x="153" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id23"/>
+			<target ref="id24"/>
+			<label kind="synchronisation" x="42" y="-119">redDone!</label>
+			<nail x="153" y="-68"/>
+			<nail x="153" y="-102"/>
 		</transition>
 		<transition>
 			<source ref="id16"/>
-			<target ref="id15"/>
-			<label kind="synchronisation" x="-824" y="-306">greenUnload?</label>
-			<nail x="-781" y="-306"/>
+			<target ref="id23"/>
+			<label kind="synchronisation" x="195" y="0">cytonIdle!</label>
+			<nail x="263" y="0"/>
+			<nail x="187" y="0"/>
 		</transition>
 		<transition>
-			<source ref="id17"/>
+			<source ref="id23"/>
 			<target ref="id16"/>
-			<label kind="synchronisation" x="-697" y="-306">greenDone?</label>
-			<nail x="-646" y="-306"/>
+			<label kind="synchronisation" x="187" y="-85">red2Green?</label>
+			<nail x="187" y="-68"/>
+			<nail x="263" y="-68"/>
 		</transition>
 		<transition>
-			<source ref="id14"/>
-			<target ref="id17"/>
-			<label kind="synchronisation" x="-697" y="-459">greenLoad?</label>
-			<nail x="-646" y="-442"/>
+			<source ref="id20"/>
+			<target ref="id23"/>
+			<label kind="synchronisation" x="93" y="-51">cytonIdle!</label>
+		</transition>
+		<transition>
+			<source ref="id21"/>
+			<target ref="id20"/>
+			<label kind="synchronisation" x="-25" y="-17">greenLoad?</label>
+			<nail x="-17" y="0"/>
+			<nail x="51" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id24"/>
+			<target ref="id20"/>
+			<label kind="synchronisation" x="-8" y="-85">redLoad?</label>
+			<nail x="-17" y="-68"/>
+			<nail x="51" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id21"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-161" y="-17">redDone!</label>
+			<nail x="-51" y="0"/>
+			<nail x="-204" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id22"/>
+			<target ref="id21"/>
+			<label kind="synchronisation" x="-110" y="17">cytonIdle!</label>
+		</transition>
+		<transition>
+			<source ref="id26"/>
+			<target ref="id22"/>
+			<label kind="synchronisation" x="-229" y="42">redLoad?</label>
+			<nail x="-221" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id24"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-178" y="-85">greenDone!</label>
+			<nail x="-51" y="-68"/>
+			<nail x="-204" y="-68"/>
 		</transition>
 		<transition>
 			<source ref="id18"/>
-			<target ref="id15"/>
-			<label kind="synchronisation" x="-969" y="-459">redUnload?</label>
-			<nail x="-917" y="-442"/>
+			<target ref="id24"/>
+			<label kind="synchronisation" x="-102" y="-170">cytonIdle!</label>
 		</transition>
 		<transition>
-			<source ref="id19"/>
+			<source ref="id24"/>
 			<target ref="id18"/>
-			<label kind="synchronisation" x="-1071" y="-459">redDone?</label>
-			<nail x="-1054" y="-442"/>
+			<label kind="synchronisation" x="0" y="-170">red2Green?</label>
+			<nail x="0" y="-119"/>
+			<nail x="0" y="-187"/>
 		</transition>
-		<transition>
-			<source ref="id13"/>
-			<target ref="id19"/>
-			<label kind="synchronisation" x="-1071" y="-306">redLoad?</label>
-			<nail x="-1054" y="-306"/>
-		</transition>
-	</template>
-	<template>
-		<name>Especificacao_2</name>
-		<location id="id20" x="-433" y="-263">
-			<name x="-425" y="-297">e22</name>
-		</location>
-		<location id="id21" x="-595" y="-42">
-			<name x="-620" y="-25">e23</name>
-		</location>
-		<location id="id22" x="-595" y="-263">
-			<name x="-620" y="-297">e21</name>
-		</location>
-		<location id="id23" x="-731" y="-153" color="#00ff00">
-			<name x="-799" y="-161">done2</name>
-		</location>
-		<location id="id24" x="-433" y="-42">
-			<name x="-425" y="-34">e24</name>
-		</location>
-		<init ref="id23"/>
-		<transition>
-			<source ref="id24"/>
-			<target ref="id22"/>
-			<label kind="synchronisation" x="-535" y="-136">redDone?</label>
-			<nail x="-433" y="-119"/>
-			<nail x="-561" y="-119"/>
-		</transition>
-		<transition>
-			<source ref="id20"/>
-			<target ref="id21"/>
-			<label kind="synchronisation" x="-544" y="-195">greenDone?</label>
-			<nail x="-433" y="-195"/>
-			<nail x="-561" y="-195"/>
-		</transition>
-		<transition>
-			<source ref="id20"/>
-			<target ref="id22"/>
-			<label kind="synchronisation" x="-544" y="-263">redDone?</label>
-		</transition>
-		<transition>
-			<source ref="id22"/>
-			<target ref="id20"/>
-			<label kind="synchronisation" x="-552" y="-229">redLoad?</label>
-			<nail x="-586" y="-246"/>
-			<nail x="-586" y="-229"/>
-			<nail x="-442" y="-229"/>
-			<nail x="-442" y="-238"/>
-		</transition>
-		<transition>
-			<source ref="id22"/>
-			<target ref="id20"/>
-			<label kind="synchronisation" x="-561" y="-314">greenLoad?</label>
-			<nail x="-586" y="-280"/>
-			<nail x="-586" y="-297"/>
-			<nail x="-442" y="-297"/>
-			<nail x="-442" y="-289"/>
-		</transition>
-		<transition>
-			<source ref="id21"/>
-			<target ref="id23"/>
-			<label kind="synchronisation" x="-688" y="-93">redDone?</label>
-			<nail x="-603" y="-59"/>
-			<nail x="-603" y="-76"/>
-			<nail x="-705" y="-76"/>
-			<nail x="-705" y="-127"/>
-		</transition>
-		<transition>
-			<source ref="id22"/>
-			<target ref="id23"/>
-			<label kind="synchronisation" x="-688" y="-221">greenDone?</label>
-			<nail x="-603" y="-246"/>
-			<nail x="-603" y="-229"/>
-			<nail x="-705" y="-229"/>
-			<nail x="-705" y="-178"/>
-		</transition>
-		<transition>
-			<source ref="id23"/>
-			<target ref="id21"/>
-			<label kind="synchronisation" x="-688" y="-42">redLoad?</label>
-			<nail x="-731" y="-42"/>
-			<nail x="-612" y="-42"/>
-		</transition>
-		<transition>
-			<source ref="id23"/>
-			<target ref="id22"/>
-			<label kind="synchronisation" x="-722" y="-280">greenLoad?</label>
-			<nail x="-731" y="-263"/>
-		</transition>
-		<transition>
-			<source ref="id21"/>
-			<target ref="id24"/>
-			<label kind="synchronisation" x="-552" y="-8">redLoad?</label>
-			<nail x="-586" y="-26"/>
-			<nail x="-586" y="-8"/>
-			<nail x="-442" y="-8"/>
-			<nail x="-442" y="-17"/>
-		</transition>
-		<transition>
-			<source ref="id24"/>
-			<target ref="id21"/>
-			<label kind="synchronisation" x="-561" y="-59">greenDone?</label>
-		</transition>
-		<transition>
-			<source ref="id21"/>
-			<target ref="id24"/>
-			<label kind="synchronisation" x="-561" y="-93">greenLoad?</label>
-			<nail x="-586" y="-59"/>
-			<nail x="-586" y="-76"/>
-			<nail x="-442" y="-76"/>
-			<nail x="-442" y="-68"/>
-		</transition>
-	</template>
-	<template>
-		<name>Especificacao_3</name>
-		<location id="id25" x="-408" y="-136">
-			<name x="-425" y="-170">e33</name>
-		</location>
-		<location id="id26" x="-476" y="-68">
-			<name x="-486" y="-102">e32</name>
-		</location>
-		<location id="id27" x="-408" y="0">
-			<name x="-416" y="-34">e31</name>
-		</location>
-		<location id="id28" x="-136" y="0">
-			<name x="-146" y="-34">e36</name>
-		</location>
-		<location id="id29" x="-68" y="-68">
-			<name x="-78" y="-102">e35</name>
-		</location>
-		<location id="id30" x="-136" y="-136">
-			<name x="-146" y="-170">e34</name>
-		</location>
-		<location id="id31" x="-272" y="-68" color="#00ff00">
-			<name x="-306" y="-102">done3</name>
-		</location>
-		<init ref="id31"/>
 		<transition>
 			<source ref="id25"/>
-			<target ref="id30"/>
-			<label kind="synchronisation" x="-340" y="-187">red2green?</label>
-			<nail x="-408" y="-170"/>
-			<nail x="-136" y="-170"/>
+			<target ref="id24"/>
+			<label kind="synchronisation" x="-119" y="-119">cytonIdle!</label>
 		</transition>
 		<transition>
 			<source ref="id26"/>
 			<target ref="id25"/>
-			<label kind="synchronisation" x="-493" y="-161">redDone?</label>
-			<nail x="-476" y="-136"/>
+			<label kind="synchronisation" x="-238" y="-119">greenLoad?</label>
+			<nail x="-221" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id19"/>
+			<target ref="id26"/>
+			<label kind="synchronisation" x="-314" y="8">cytonIdle!</label>
+			<nail x="-331" y="0"/>
+			<nail x="-255" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id26"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-323" y="-85">red2Green?</label>
+			<nail x="-255" y="-68"/>
+			<nail x="-331" y="-68"/>
+		</transition>
+	</template>
+	<template>
+		<name>Especificacao1</name>
+		<location id="id27" x="-986" y="-374">
+			<name x="-996" y="-408">E14</name>
+		</location>
+		<location id="id28" x="-850" y="-238">
+			<name x="-867" y="-221">E13</name>
+		</location>
+		<location id="id29" x="-850" y="-510">
+			<name x="-860" y="-544">E11</name>
+		</location>
+		<location id="id30" x="-850" y="-374">
+			<name x="-867" y="-408">E10</name>
+		</location>
+		<location id="id31" x="-714" y="-374">
+			<name x="-722" y="-408">E12</name>
+		</location>
+		<init ref="id30"/>
+		<transition>
+			<source ref="id27"/>
+			<target ref="id27"/>
+			<label kind="synchronisation" x="-1139" y="-382">red2Green?</label>
+			<nail x="-1054" y="-340"/>
+			<nail x="-1054" y="-408"/>
 		</transition>
 		<transition>
 			<source ref="id27"/>
-			<target ref="id26"/>
-			<label kind="synchronisation" x="-484" y="0">redLoad?</label>
-			<nail x="-476" y="0"/>
+			<target ref="id30"/>
+			<label kind="synchronisation" x="-952" y="-425">redUnload?</label>
+			<nail x="-952" y="-408"/>
+			<nail x="-884" y="-408"/>
 		</transition>
 		<transition>
-			<source ref="id31"/>
+			<source ref="id30"/>
 			<target ref="id27"/>
-			<label kind="synchronisation" x="-391" y="0">redNew?</label>
-			<nail x="-340" y="0"/>
+			<label kind="synchronisation" x="-952" y="-374">redDone?</label>
 		</transition>
 		<transition>
 			<source ref="id28"/>
-			<target ref="id31"/>
-			<label kind="synchronisation" x="-255" y="8">greenUnload?</label>
-			<nail x="-144" y="0"/>
-			<nail x="-204" y="0"/>
+			<target ref="id30"/>
+			<label kind="synchronisation" x="-943" y="-306">redLoad?</label>
+			<nail x="-884" y="-272"/>
+			<nail x="-884" y="-340"/>
 		</transition>
 		<transition>
-			<source ref="id29"/>
+			<source ref="id30"/>
 			<target ref="id28"/>
-			<label kind="synchronisation" x="-119" y="0">greenDone?</label>
-			<nail x="-68" y="0"/>
+			<label kind="synchronisation" x="-850" y="-306">redNew?</label>
 		</transition>
 		<transition>
 			<source ref="id30"/>
 			<target ref="id29"/>
-			<label kind="synchronisation" x="-110" y="-153">greenLoad?</label>
-			<nail x="-68" y="-136"/>
+			<label kind="synchronisation" x="-935" y="-459">greenNew?</label>
 		</transition>
 		<transition>
 			<source ref="id31"/>
 			<target ref="id30"/>
-			<label kind="synchronisation" x="-238" y="-153">greenNew?</label>
-			<nail x="-204" y="-136"/>
+			<label kind="synchronisation" x="-824" y="-340">greenUnload?</label>
+			<nail x="-748" y="-340"/>
+			<nail x="-816" y="-340"/>
+		</transition>
+		<transition>
+			<source ref="id30"/>
+			<target ref="id31"/>
+			<label kind="synchronisation" x="-824" y="-391">greenDone?</label>
+		</transition>
+		<transition>
+			<source ref="id29"/>
+			<target ref="id30"/>
+			<label kind="synchronisation" x="-816" y="-459">greenLoad?</label>
+			<nail x="-816" y="-476"/>
+			<nail x="-816" y="-408"/>
 		</transition>
 	</template>
 	<template>
-		<name>Supervisorio</name>
-		<location id="id32" x="0" y="0">
+		<name>Especificacao2</name>
+		<location id="id32" x="-1326" y="-272">
+			<name x="-1343" y="-306">E206</name>
 		</location>
-		<init ref="id32"/>
+		<location id="id33" x="-1326" y="-204">
+			<name x="-1343" y="-187">E212</name>
+		</location>
+		<location id="id34" x="-1190" y="-136" color="#00ff00">
+			<name x="-1207" y="-119">E211</name>
+		</location>
+		<location id="id35" x="-1190" y="-340" color="#ff0000">
+			<name x="-1200" y="-374">E205</name>
+		</location>
+		<location id="id36" x="-1326" y="-340">
+			<name x="-1336" y="-374">E204</name>
+		</location>
+		<location id="id37" x="-1326" y="-136">
+			<name x="-1343" y="-119">E210</name>
+		</location>
+		<location id="id38" x="-1462" y="-170" color="#ff0000">
+			<name x="-1487" y="-153">E208</name>
+		</location>
+		<location id="id39" x="-1598" y="-204">
+			<name x="-1608" y="-238">E207</name>
+		</location>
+		<location id="id40" x="-1598" y="-170">
+			<name x="-1615" y="-153">E209</name>
+		</location>
+		<location id="id41" x="-1598" y="-272">
+			<name x="-1615" y="-263">E203</name>
+		</location>
+		<location id="id42" x="-1462" y="-306" color="#00ff00">
+			<name x="-1472" y="-340">E202</name>
+		</location>
+		<location id="id43" x="-1598" y="-306">
+			<name x="-1608" y="-340">E201</name>
+		</location>
+		<location id="id44" x="-1734" y="-238">
+			<name x="-1785" y="-246">E200</name>
+		</location>
+		<init ref="id44"/>
+		<transition>
+			<source ref="id34"/>
+			<target ref="id32"/>
+			<label kind="synchronisation" x="-1258" y="-221">redDone?</label>
+			<nail x="-1190" y="-204"/>
+			<nail x="-1258" y="-204"/>
+		</transition>
+		<transition>
+			<source ref="id35"/>
+			<target ref="id33"/>
+			<label kind="synchronisation" x="-1258" y="-272">greenDone?</label>
+			<nail x="-1190" y="-272"/>
+			<nail x="-1258" y="-272"/>
+		</transition>
+		<transition>
+			<source ref="id42"/>
+			<target ref="id36"/>
+			<label kind="synchronisation" x="-1428" y="-323">redNew?</label>
+			<nail x="-1360" y="-306"/>
+		</transition>
+		<transition>
+			<source ref="id38"/>
+			<target ref="id37"/>
+			<label kind="synchronisation" x="-1428" y="-136">greenNew?</label>
+			<nail x="-1428" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id32"/>
+			<target ref="id42"/>
+			<label kind="synchronisation" x="-1428" y="-272">redUnload!</label>
+			<nail x="-1428" y="-272"/>
+		</transition>
+		<transition>
+			<source ref="id35"/>
+			<target ref="id32"/>
+			<label kind="synchronisation" x="-1292" y="-306">redDone?</label>
+			<nail x="-1224" y="-306"/>
+			<nail x="-1292" y="-306"/>
+		</transition>
+		<transition>
+			<source ref="id33"/>
+			<target ref="id38"/>
+			<label kind="synchronisation" x="-1428" y="-221">greenUnload!</label>
+			<nail x="-1428" y="-204"/>
+		</transition>
+		<transition>
+			<source ref="id34"/>
+			<target ref="id33"/>
+			<label kind="synchronisation" x="-1292" y="-187">greenDone?</label>
+			<nail x="-1224" y="-170"/>
+			<nail x="-1292" y="-170"/>
+		</transition>
+		<transition>
+			<source ref="id37"/>
+			<target ref="id34"/>
+			<label kind="synchronisation" x="-1300" y="-136">greenLoad?</label>
+		</transition>
+		<transition>
+			<source ref="id36"/>
+			<target ref="id35"/>
+			<label kind="synchronisation" x="-1292" y="-357">redLoad!</label>
+		</transition>
+		<transition>
+			<source ref="id38"/>
+			<target ref="id37"/>
+			<label kind="synchronisation" x="-1428" y="-187">redNew?</label>
+			<nail x="-1360" y="-170"/>
+		</transition>
+		<transition>
+			<source ref="id42"/>
+			<target ref="id36"/>
+			<label kind="synchronisation" x="-1428" y="-357">greenNew?</label>
+			<nail x="-1428" y="-340"/>
+		</transition>
+		<transition>
+			<source ref="id39"/>
+			<target ref="id44"/>
+			<label kind="synchronisation" x="-1700" y="-221">redUnload!</label>
+			<nail x="-1700" y="-204"/>
+		</transition>
+		<transition>
+			<source ref="id38"/>
+			<target ref="id39"/>
+			<label kind="synchronisation" x="-1564" y="-221">redDone?</label>
+			<nail x="-1496" y="-204"/>
+		</transition>
+		<transition>
+			<source ref="id40"/>
+			<target ref="id38"/>
+			<label kind="synchronisation" x="-1564" y="-170">redLoad!</label>
+		</transition>
+		<transition>
+			<source ref="id44"/>
+			<target ref="id40"/>
+			<label kind="synchronisation" x="-1700" y="-170">redNew?</label>
+			<nail x="-1700" y="-170"/>
+		</transition>
+		<transition>
+			<source ref="id41"/>
+			<target ref="id44"/>
+			<label kind="synchronisation" x="-1700" y="-272">greenUnload!</label>
+			<nail x="-1700" y="-272"/>
+		</transition>
+		<transition>
+			<source ref="id42"/>
+			<target ref="id41"/>
+			<label kind="synchronisation" x="-1564" y="-272">greenDone?</label>
+			<nail x="-1496" y="-272"/>
+		</transition>
+		<transition>
+			<source ref="id43"/>
+			<target ref="id42"/>
+			<label kind="synchronisation" x="-1564" y="-323">greenLoad!</label>
+		</transition>
+		<transition>
+			<source ref="id44"/>
+			<target ref="id43"/>
+			<label kind="synchronisation" x="-1700" y="-323">greenNew?</label>
+			<nail x="-1700" y="-306"/>
+		</transition>
+	</template>
+	<template>
+		<name>Especificacao3</name>
+		<location id="id45" x="-510" y="-102">
+			<name x="-520" y="-136">E34</name>
+		</location>
+		<location id="id46" x="-374" y="-102">
+			<name x="-391" y="-136">E30</name>
+		</location>
+		<location id="id47" x="-374" y="34">
+			<name x="-391" y="51">E33</name>
+		</location>
+		<location id="id48" x="-374" y="-238">
+			<name x="-384" y="-272">E31</name>
+		</location>
+		<location id="id49" x="-238" y="-102">
+			<name x="-246" y="-136">E32</name>
+		</location>
+		<init ref="id46"/>
+		<transition>
+			<source ref="id45"/>
+			<target ref="id45"/>
+			<label kind="synchronisation" x="-663" y="-110">redUnload?</label>
+			<nail x="-578" y="-68"/>
+			<nail x="-578" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id45"/>
+			<target ref="id46"/>
+			<label kind="synchronisation" x="-484" y="-153">red2Green?</label>
+			<nail x="-476" y="-136"/>
+			<nail x="-408" y="-136"/>
+		</transition>
+		<transition>
+			<source ref="id46"/>
+			<target ref="id45"/>
+			<label kind="synchronisation" x="-476" y="-102">redDone?</label>
+		</transition>
+		<transition>
+			<source ref="id47"/>
+			<target ref="id46"/>
+			<label kind="synchronisation" x="-476" y="-34">redLoad?</label>
+			<nail x="-408" y="0"/>
+			<nail x="-408" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id46"/>
+			<target ref="id47"/>
+			<label kind="synchronisation" x="-374" y="-34">redNew?</label>
+		</transition>
+		<transition>
+			<source ref="id46"/>
+			<target ref="id48"/>
+			<label kind="synchronisation" x="-450" y="-187">greenNew?</label>
+		</transition>
+		<transition>
+			<source ref="id49"/>
+			<target ref="id46"/>
+			<label kind="synchronisation" x="-348" y="-68">greenUnload?</label>
+			<nail x="-272" y="-68"/>
+			<nail x="-340" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id46"/>
+			<target ref="id49"/>
+			<label kind="synchronisation" x="-348" y="-119">greenDone?</label>
+		</transition>
+		<transition>
+			<source ref="id48"/>
+			<target ref="id46"/>
+			<label kind="synchronisation" x="-340" y="-187">greenLoad?</label>
+			<nail x="-340" y="-204"/>
+			<nail x="-340" y="-136"/>
+		</transition>
+	</template>
+	<template>
+		<name>Supervisorio1</name>
+		<location id="id50" x="306" y="-102">
+			<name x="272" y="-136">C0G1R0E14</name>
+			<committed/>
+		</location>
+		<location id="id51" x="306" y="34">
+			<name x="272" y="51">C0G0R1E12</name>
+			<committed/>
+		</location>
+		<location id="id52" x="238" y="0">
+			<name x="195" y="17">C0G1R1E11</name>
+			<committed/>
+		</location>
+		<location id="id53" x="238" y="-68">
+			<name x="195" y="-93">C0G1R1E13</name>
+			<committed/>
+		</location>
+		<location id="id54" x="-68" y="-68">
+			<name x="-102" y="-59">C0G0R0E12</name>
+			<committed/>
+		</location>
+		<location id="id55" x="-68" y="0">
+			<name x="-102" y="-34">C0G0R0E14</name>
+			<committed/>
+		</location>
+		<location id="id56" x="-170" y="34">
+			<name x="-212" y="51">C0G0R0E13</name>
+			<committed/>
+		</location>
+		<location id="id57" x="-170" y="-102">
+			<name x="-204" y="-136">C0G0R0E11</name>
+			<committed/>
+		</location>
+		<location id="id58" x="102" y="34" color="#ff0000">
+			<name x="68" y="51">C0G0R1E10</name>
+		</location>
+		<location id="id59" x="510" y="-34" color="#000000">
+			<name x="535" y="-42">C0G1R1E10</name>
+		</location>
+		<location id="id60" x="103" y="-102" color="#00ff00">
+			<name x="68" y="-136">C0G1R0E10</name>
+		</location>
+		<location id="id61" x="374" y="-34" color="#000000">
+			<name x="263" y="-42">C2G1R1E10</name>
+		</location>
+		<location id="id62" x="-272" y="-34">
+			<name x="-255" y="-42">C0G0R0E10</name>
+		</location>
+		<location id="id63" x="-34" y="34" color="#ff0000">
+			<name x="-68" y="51">C2G0R1E10</name>
+		</location>
+		<location id="id64" x="-34" y="-102" color="#00ff00">
+			<name x="-76" y="-136">C2G1R0E10</name>
+		</location>
+		<init ref="id62"/>
+		<transition>
+			<source ref="id51"/>
+			<target ref="id58"/>
+			<label kind="synchronisation" x="170" y="34">greenUnload!</label>
+		</transition>
+		<transition>
+			<source ref="id50"/>
+			<target ref="id60"/>
+			<label kind="synchronisation" x="170" y="-119">redUnload!</label>
+		</transition>
+		<transition>
+			<source ref="id58"/>
+			<target ref="id52"/>
+			<label kind="synchronisation" x="136" y="-17">greenNew?</label>
+			<nail x="136" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id60"/>
+			<target ref="id53"/>
+			<label kind="synchronisation" x="136" y="-68">redNew?</label>
+			<nail x="136" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id54"/>
+			<target ref="id62"/>
+			<label kind="synchronisation" x="-204" y="-85">greenUnload!</label>
+			<nail x="-238" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id55"/>
+			<target ref="id62"/>
+			<label kind="synchronisation" x="-204" y="-17">redUnload!</label>
+			<nail x="-238" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id62"/>
+			<target ref="id56"/>
+			<label kind="synchronisation" x="-255" y="34">redNew?</label>
+			<nail x="-272" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id62"/>
+			<target ref="id57"/>
+			<label kind="synchronisation" x="-263" y="-119">greenNew?</label>
+			<nail x="-272" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id59"/>
+			<target ref="id51"/>
+			<label kind="synchronisation" x="374" y="34">greenDone?</label>
+			<nail x="476" y="0"/>
+			<nail x="476" y="34"/>
+		</transition>
+		<transition>
+			<source ref="id59"/>
+			<target ref="id50"/>
+			<label kind="synchronisation" x="374" y="-119">redDone?</label>
+			<nail x="476" y="-68"/>
+			<nail x="476" y="-102"/>
+		</transition>
+		<transition>
+			<source ref="id61"/>
+			<target ref="id59"/>
+			<label kind="synchronisation" x="399" y="-51">cytonIdle?</label>
+		</transition>
+		<transition>
+			<source ref="id52"/>
+			<target ref="id61"/>
+			<label kind="synchronisation" x="263" y="-17">greenLoad!</label>
+			<nail x="340" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id53"/>
+			<target ref="id61"/>
+			<label kind="synchronisation" x="263" y="-68">redLoad!</label>
+			<nail x="340" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id58"/>
+			<target ref="id55"/>
+			<label kind="synchronisation" x="-17" y="-17">redDone?</label>
+			<nail x="85" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id63"/>
+			<target ref="id58"/>
+			<label kind="synchronisation" x="0" y="17">cytonIdle?</label>
+		</transition>
+		<transition>
+			<source ref="id56"/>
+			<target ref="id63"/>
+			<label kind="synchronisation" x="-136" y="34">redLoad!</label>
+		</transition>
+		<transition>
+			<source ref="id60"/>
+			<target ref="id54"/>
+			<label kind="synchronisation" x="-17" y="-85">greenDone?</label>
+			<nail x="85" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id64"/>
+			<target ref="id60"/>
+			<label kind="synchronisation" x="0" y="-119">cytonIdle?</label>
+		</transition>
+		<transition>
+			<source ref="id57"/>
+			<target ref="id64"/>
+			<label kind="synchronisation" x="-144" y="-119">greenLoad!</label>
+		</transition>
 	</template>
 	<system>//Declaration
-MaquinaR = Processo_R();
-MaquinaG = Processo_G();
 
 // List one or more processes to be composed into a system.
-system Input, Cyton, MaquinaR, MaquinaG, Especificacao_1, Especificacao_2, Especificacao_3;
+system Flag, Input, ProcessoG, ProcessoR, Cyton, Supervisorio1, Especificacao1;
     </system>
 	<queries>
-		<query>
-			<formula>A[] Especificacao_2.M2_Ocupada1 imply (Maquina2.Processando and not Maquina1.Processando)
-			</formula>
-			<comment>Garante que a primeira peca verde que chegue seja processada somente pela maquina 1
-			</comment>
-		</query>
-		<query>
-			<formula>A[] Especificacao_2.M1_Ocupada2 imply (Maquina1.Processando and not Maquina2.Processando)
-			</formula>
-			<comment>Garante que a primeira peca vermelha que chegue seja processada somente pela maquina 1
-			</comment>
-		</query>
-		<query>
-			<formula>A[] Especificacao_2.M2_Ocupada2 imply (Maquina1.Processando and Maquina2.Processando)
-			</formula>
-			<comment>Garante que de acordo com a especificacao 2, se duas pecas chegaram antes de uma maquina terminar de processar, ambas as maquinas sao utilizadas
-			</comment>
-		</query>
-		<query>
-			<formula>A[] Especificacao_2.M1_Ocupada1 imply (Maquina1.Processando and Maquina2.Processando)
-			</formula>
-			<comment>Garante que de acordo com a especificacao 2, se duas pecas chegaram antes de uma maquina terminar de processar, ambas as maquinas sao utilizadas
-			</comment>
-		</query>
-		<query>
-			<formula>A&lt;&gt; (Cyton.DepositouRed or Cyton.DepositouGreen) imply Especificacao_3.done
-			</formula>
-			<comment>Para todos os caminhos em que o estado Cyton.PegouGreen ou Cyton.PegouRed ocorrer, eventualmente Especificacao_3 vai chegar no estado done.
-			</comment>
-		</query>
-		<query>
-			<formula>A&lt;&gt; (Cyton.DepositouRed or Cyton.DepositouGreen) imply Especificacao_2.done
-			</formula>
-			<comment>Para todos os caminhos em que o estado Cyton.PegouGreen ou Cyton.PegouRed ocorrer, eventualmente Especificacao_2 vai chegar no estado done.
-			</comment>
-		</query>
-		<query>
-			<formula>A&lt;&gt; (Cyton.DepositouRed or Cyton.DepositouGreen) imply Especificacao_1.done
-			</formula>
-			<comment>Para todos os caminhos em que o estado Cyton.PegouGreen ou Cyton.PegouRed ocorrer, eventualmente Especificacao_1 vai chegar no estado done.
-			</comment>
-		</query>
 		<query>
 			<formula>A[] not deadlock
 			</formula>
