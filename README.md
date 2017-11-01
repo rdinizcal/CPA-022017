@@ -12,6 +12,7 @@ Utilizar o conhecimento de autômatos adquirido no decorrer da disciplina para m
 
 ### Organização do repositório
 ./uppaal/ - diretório com modelos (locais,globais,especificações e supervisórios) implementados com auxílio da ferramenta UPPAAL;
+
 ./code/ - diretório código em python dos supervisórios implementados para o middleware ROS;
 
 
