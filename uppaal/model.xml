@@ -780,8 +780,8 @@ bool flag = true;</declaration>
 		<location id="id43" x="-238" y="-238">
 			<name x="-248" y="-272">E32</name>
 		</location>
-		<location id="id44" x="-510" y="-238" color="#ffffff">
-			<name x="-520" y="-272">NULL</name>
+		<location id="id44" x="-238" y="34" color="#ffffff">
+			<name x="-248" y="0">NULL</name>
 		</location>
 		<location id="id45" x="-510" y="-102">
 			<name x="-520" y="-136">E35</name>
@@ -814,14 +814,14 @@ bool flag = true;</declaration>
 		<transition>
 			<source ref="id46"/>
 			<target ref="id44"/>
-			<label kind="synchronisation" x="-518" y="-212">redUnload?</label>
+			<label kind="synchronisation" x="-314" y="-42">redUnload?</label>
 		</transition>
 		<transition>
 			<source ref="id45"/>
 			<target ref="id43"/>
 			<label kind="synchronisation" x="-484" y="-153">red2Green?</label>
-			<nail x="-476" y="-136"/>
-			<nail x="-408" y="-136"/>
+			<nail x="-510" y="-272"/>
+			<nail x="-272" y="-272"/>
 		</transition>
 		<transition>
 			<source ref="id46"/>
@@ -843,7 +843,7 @@ bool flag = true;</declaration>
 		<transition>
 			<source ref="id46"/>
 			<target ref="id48"/>
-			<label kind="synchronisation" x="-450" y="-187">greenNew?</label>
+			<label kind="synchronisation" x="-416" y="-195">greenNew?</label>
 		</transition>
 		<transition>
 			<source ref="id49"/>
@@ -1285,7 +1285,7 @@ bool flag = true;</declaration>
 		<transition color="#ff0000">
 			<source ref="id75"/>
 			<target ref="id94"/>
-			<label kind="synchronisation" x="-748" y="-408">redNew</label>
+			<label kind="synchronisation" x="-748" y="-408">redNew?</label>
 			<nail x="-773" y="-408"/>
 			<nail x="-654" y="-408"/>
 		</transition>
@@ -1294,7 +1294,7 @@ bool flag = true;</declaration>
 			<target ref="id75"/>
 			<label kind="synchronisation" x="-892" y="-433">cytonIdle?</label>
 		</transition>
-		<transition>
+		<transition color="#ff0000">
 			<source ref="id76"/>
 			<target ref="id98"/>
 			<label kind="synchronisation" x="-748" y="-323">redUnload!</label>
@@ -1307,17 +1307,17 @@ bool flag = true;</declaration>
 			<nail x="-136" y="-272"/>
 			<nail x="-544" y="-272"/>
 		</transition>
-		<transition>
+		<transition color="#00ff00">
 			<source ref="id81"/>
 			<target ref="id77"/>
-			<label kind="synchronisation" x="-195" y="-102">greenDone?</label>
+			<label kind="synchronisation" x="-221" y="-102">greenDone?</label>
 			<nail x="-136" y="-102"/>
 			<nail x="-544" y="-102"/>
 		</transition>
-		<transition>
+		<transition color="#ff0000">
 			<source ref="id80"/>
 			<target ref="id76"/>
-			<label kind="synchronisation" x="-204" y="-391">redDone?</label>
+			<label kind="synchronisation" x="-212" y="-391">redDone?</label>
 			<nail x="-136" y="-374"/>
 			<nail x="-544" y="-374"/>
 		</transition>
@@ -1333,7 +1333,7 @@ bool flag = true;</declaration>
 			<nail x="-136" y="-204"/>
 			<nail x="-544" y="-204"/>
 		</transition>
-		<transition>
+		<transition color="#00ff00">
 			<source ref="id77"/>
 			<target ref="id97"/>
 			<label kind="synchronisation" x="-748" y="-170">greenUnload!</label>
@@ -1364,13 +1364,13 @@ bool flag = true;</declaration>
 			<target ref="id79"/>
 			<label kind="synchronisation" x="-1105" y="-306">greenNew?</label>
 		</transition>
-		<transition>
+		<transition color="#00ff00">
 			<source ref="id84"/>
 			<target ref="id83"/>
 			<label kind="synchronisation" x="-382" y="-170">greenDone?</label>
 			<nail x="-425" y="-170"/>
 		</transition>
-		<transition>
+		<transition color="#ff0000">
 			<source ref="id86"/>
 			<target ref="id82"/>
 			<label kind="synchronisation" x="-365" y="-323">redDone?</label>
