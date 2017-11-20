@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#@Author: Carlos Rocha
+
 # AUTOMATO DE EVENTOS NÃO CONTROLÁVEIS
 
 import rospy
@@ -67,10 +69,12 @@ def C0G0R0E11():#1
 	global state
 	global newEvent
 
-        sendMovement(1)#greenLoad!
-        
-	newEvent = 'none'
-	state = C1G1R0E10
+        while True:
+                if newEvent == 'greenLoad':
+                        sendMovement(1)#greenLoad!
+                        newEvent = 'none'
+                        state = C1G1R0E10
+                        break
 
 def C1G0R0E11():#X1
 	print('state3(C1G0R0E11)')
@@ -88,10 +92,12 @@ def C0G0R0E12():#2
 	global state
 	global newEvent
 
-	sendMovement(3)#greenUnload!
-
-	newEvent = 'none'
-	state = C1G0R0E10
+        while True:
+                if newEvent == 'greenUnload':
+                        sendMovement(3)#greenUnload!
+                        newEvent = 'none'
+                        state = C1G0R0E10
+                        break
 	
 
 def C1G0R0E10():#3
@@ -127,22 +133,26 @@ def C0G0R0E14():#4
         print('state4(C0G0R0E14)')
         global state
         global newEvent
-        
-        sendMovement(2)#redUnload!
 
-        newEvent = 'none'
-        state = C1G0R0E10
+        while True:
+                if newEvent == 'redUnload':
+                        sendMovement(2)#redUnload!
+                        newEvent = 'none'
+                        state = C1G0R0E10
+                        break
 
                         
 def C0G0R0E13():#5
         print('state5(C0G0R0E13)')
         global state
         global newEvent
-        
-        sendMovement(0)#redLoad!
 
-        newEvent = 'none'
-        state = C1G0R1E10
+        while True:
+                if newEvent == 'redLoad':
+                        sendMovement(0)#redLoad!
+                        newEvent = 'none'
+                        state = C1G0R1E10
+                        break
         
 
 
@@ -226,7 +236,7 @@ def C0G1R0E10():#11
         global newEvent
 
         while True:
-                 if newEvent =='greenDone':
+                if newEvent =='greenDone':
                         newEvent = 'none'
                         state = C0G0R0E12
                         break
@@ -239,20 +249,26 @@ def C0G1R0E14():#12
         print('state12(C0G1R0E14)')
         global state
         global newEvent
-        sendMovement(2)#redUnload!
 
-        newEvent = 'none'
-        state = C1G1R0E10
+        while True:
+                if newEvent == 'redUnload':
+                        sendMovement(2)#redUnload!
+                        newEvent = 'none'
+                        state = C1G1R0E10
+                        break
                         
 
 def C0G0R1E12():#13
         print('state13(C0G0R1E12)')
         global state
         global newEvent
-        sendMovement(3)#greenUnload!
 
-        newEvent = 'none'
-        state = C1G0R1E10
+        while True:
+                if newEvent == 'greenUnload':
+                        sendMovement(3)#greenUnload!
+                        newEvent = 'none'
+                        state = C1G0R1E10
+                        break
                         
 
 def C0G0R1E10():#14
@@ -285,10 +301,13 @@ def C0G1R0E13():#16
         print('state16(C0G1R0E13)')
         global state
         global newEvent
-        sendMovement(0)#redLoad!
 
-        newEvent = 'none'
-        state = C1G1R1E10
+        while True:
+                if newEvent == 'redLoad':
+                        sendMovement(0)#redLoad!
+                        newEvent = 'none'
+                        state = C1G1R1E10
+                        break
                         
 
 def C1G1R0E14():#17
@@ -317,10 +336,13 @@ def C0G0R1E11():#19
         print('state19(C0G0R1E11)')
         global state
         global newEvent
-        sendMovement(1)#greenLoad
 
-        newEvent = 'none'
-        state = C1G1R1E10
+        while True:
+                if newEvent == 'greenLoad':
+                        sendMovement(1)#greenLoad
+                        newEvent = 'none'
+                        state = C1G1R1E10
+                        break
                         
 def C1G1R1E10():#20
         print('state20(C1G1R1E10)')

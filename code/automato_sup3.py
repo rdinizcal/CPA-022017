@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+#@Author: Carlos Rocha
+
 # AUTOMATO DE EVENTOS NÃO CONTROLÁVEIS
 
 import rospy
@@ -67,10 +69,12 @@ def C0G0R0E31():#1
 	global state
 	global newEvent
 
-        sendMovement(1)#GREENLOAD
-
-	newEvent = 'none'
-	state = C1G1R0E32
+        while True:
+                if newEvent == 'greenLoad':
+                        sendMovement(1)#GREENLOAD
+                        newEvent = 'none'
+                        state = C1G1R0E32
+                        break
 			
 def C1G0R0E31()#X1
         print('stateX1(C1G0R0E31)')
@@ -80,7 +84,7 @@ def C1G0R0E31()#X1
         while True:
                 if newEvent == 'cytonIdle':
                         newEvent = 'none'
-                        state = C0G0E31
+                        state = C0G0R0E31
                         break
 	
 def C0G0R0E33():#2
@@ -88,10 +92,12 @@ def C0G0R0E33():#2
 	global state
 	global newEvent
 
-	sendMovement(3)#GREENUNLOAD
-
-	newEvent = 'none'
-	state = C1G0R0E30
+        while True:
+                if newEvent == 'greenUnload':
+                        sendMovement(3)#GREENUNLOAD
+                        newEvent = 'none'
+                        state = C1G0R0E30
+                        break
 			
 
 def C1G0R0E30():#3
@@ -129,10 +135,12 @@ def C0G0R0E34():#4
 	global state
 	global newEvent
 
-	sendMovement(0)#redload
-
-	newEvent = 'none'
-	state = C1G0R1E30
+        while True:
+                if newEvent == 'redLoad':
+                        sendMovement(0)#redload
+                        newEvent = 'none'
+                        state = C1G0R1E30
+                        break
 			
 
 def C1G0R0E33():#5
@@ -170,10 +178,12 @@ def C0G0R0E35():#7
 	global state
 	global newEvent
 
-	sendMovement(4)#RED2GREEN
-
-	newEvent = 'none'
-	state = C1G1R0E32
+        while True:
+                if newEvent == 'red2Green':
+                        sendMovement(4)#RED2GREEN
+                        newEvent = 'none'
+                        state = C1G1R0E32
+                        break
 			
 
 def C1G0R0E35():#8
@@ -237,10 +247,12 @@ def C0G0R1E33():#12
 	global state
 	global newEvent
 
-	sendMovement(3)#GREENUNLOAD
-
-	newEvent = 'none'
-	state = C1G0R1E30
+        while True:
+                if newEvent == 'greenUnload':
+                        sendMovement(3)#GREENUNLOA
+                        newEvent = 'none'
+                        state = C1G0R1E30
+                        break
 			
 def C0G0R1E30():#13
 	print('state13(C0G0R1E30)')
@@ -273,10 +285,12 @@ def C0G1R0E36():#15
 	global state
 	global newEvent
 
-	sendMovement(0)#REDLOAD
-
-	newEvent = 'none'
-	state = C1G1R1E32
+        while True:
+                if newEvent == 'redLoad':
+                        sendMovement(0)#REDLOAD
+                        newEvent = 'none'
+                        state = C1G1R1E32
+                        break
 			
 
 def C0G1R131():#16
@@ -284,10 +298,12 @@ def C0G1R131():#16
 	global state
 	global newEvent
 
-	sendMovement(1)#GREENLOAD
-
-	newEvent = 'none'
-	state = C1G1R1E32
+        while True:
+                if newEvent == 'greenLoad':
+                        sendMovement(1)#GREENLOAD
+                        newEvent = 'none'
+                        state = C1G1R1E32
+                        break
 			
 
 def C1G0R1E33():#17
