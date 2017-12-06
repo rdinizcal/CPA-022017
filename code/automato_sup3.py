@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-#@Author: Carlos Rocha
-
+#Trabalho de Controle para Automação 2017/2
+#Código de controle do robô cyton.
+#Supervisório 3 (Peças vermelhas devem passar nas duas máquinas (R to G) antes de sairem do processo)
+#Author: Carlos Rocha
+#Version: 1.0
 # AUTOMATO DE EVENTOS NÃO CONTROLÁVEIS
 
 import rospy
@@ -76,7 +78,7 @@ def C0G0R0E31():#1
                         state = C1G1R0E32
                         break
 			
-def C1G0R0E31()#X1
+def C1G0R0E31():#X1
         print('stateX1(C1G0R0E31)')
         global state
         global newEvent
@@ -110,16 +112,16 @@ def C1G0R0E30():#3
 			newEvent = 'none'
 			state = init#C0G0R0E30
 			break
-		elif newEvent = 'greenNew':
+		elif newEvent == 'greenNew':
                         newEvent = 'none'
                         state = C1G0R0E31#x1
                         break
-                elif newEvent = 'redNew':
+                elif newEvent == 'redNew':
                         newEvent = 'none'
                         state = C1G0R0E34#X2
                         break
 
-def C1G0R0E34()#X2
+def C1G0R0E34():#X2
         print('stateX2(C1G0R0E34)');
         global state
         global newEvent

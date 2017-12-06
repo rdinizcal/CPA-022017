@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-#@Author: Carlos Rocha
+#Trabalho de Controle para Automação 2017/2
+#Código de controle do robô cyton.
+#Supervisório 2 (Utiliza a outra máquina caso a desejada esteja indisponível.)
+#Author: Carlos Rocha
+#Version: 1.0
 
 # AUTOMATO DE EVENTOS NÃO CONTROLÁVEIS
 
@@ -294,7 +297,7 @@ def C0G0R1E210():#17
 	global newEvent
 
 	while True:
-		if newEvent == 'cytonIdle':
+		if newEvent == 'greenLoad':
                         sendMovement(1)#greenLoad
 			newEvent = 'none'
 			state = C1G1R1E211

@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-#@Author: Carlos Rocha
-
+#Trabalho de Controle para Automação 2017/2
+#Código de controle do robô cyton.
+#Supervisório 1 (Peças verdes na máquina verde, peças vermelhas na máquina vermelha)
+#Author: Carlos Rocha
+#Version: 1.0
 # AUTOMATO DE EVENTOS NÃO CONTROLÁVEIS
 
 import rospy
